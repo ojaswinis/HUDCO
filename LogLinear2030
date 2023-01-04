@@ -1,0 +1,40 @@
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy import stats
+from sklearn.metrics import r2_score
+from sklearn.linear_model import LinearRegression
+#Profit After Tax Prediction Model Using Linear Regression(based on last decade
+x = np.arange(2012,2031,1)
+
+y = [630.33, 700.56,726.34,777.63,783.79, 841.81, 1010.18, 1180.15, 1708.42, 1578.58, 1716.60, 1867.5449755310294, 2081.1377118312407, 2319.1592343710536, 2584.4034845901756, 2879.9839494302805, 3209.37020803141, 3576.4286583045496, 3985.4679014383537]
+
+y = np.array(y)
+logy = np.log(y)
+mymodel = LinearRegression()
+mymodel.fit(np.array(x).reshape(-1, 1), logy)
+ypredlog = mymodel.predict(np.array(x).reshape(-1,1))
+ypred = np.exp(ypredlog)
+
+
+
+plt.scatter(x, y)
+plt.plot(x, ypred,'r')
+plt.show()
+myline = np.linspace(2011, 2021, 10)
+
+print (mymodel.coef_,mymodel.intercept_)
+print(r2_score(y,ypred))
+
+def myfunc(x):
+    
+    
+    y = -211.43 + 0.10829 * x
+    v = np.exp(y)
+    return v
+helo = []
+for x in range(2011, 2030):
+   
+    val = myfunc(x)
+    helo.append(val)
+print(helo)
+
