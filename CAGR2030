@@ -1,0 +1,43 @@
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.arange(2012,2031,1)
+
+#a:2011
+a = 630.33
+b = 1716.6
+n = 10
+list = []
+
+for n in range (10,20):
+    
+
+        cagr = (b/a) ** (1/n) - 1
+        FV = b * cagr + b
+        list.append(FV)
+        b = FV
+# list = np.array(list)
+# plt.scatter(x, list)
+print (list)
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy import stats
+from sklearn.metrics import r2_score
+from sklearn.linear_model import LinearRegression
+from scipy.stats import linregress
+
+#Profit After Tax Prediction Model Using Linear Regression(based on last decade)
+x = x = np.arange(2011,2032,1)
+
+y = [630.33, 700.56,726.34,777.63,783.79, 841.81, 1010.18, 1180.15, 1708.42, 1578.58, 1716.60,1897.4888005437317, 2097.4389771576894, 2318.4591453924127, 2562.7695810906994, 2832.824524346821, 3131.3368337724087, 3461.3052387354155, 3826.0444633367115, 4229.218524737133, 4674.877540336009]
+
+y = np.array(y)
+
+mymodel = LinearRegression()
+mymodel.fit(np.array(x).reshape(-1, 1),y)
+ypred = mymodel.predict(np.array(x).reshape(-1,1))
+
+plt.scatter(x, y)
+plt.plot(x, ypred,'r')
+plt.show()
+myline = np.linspace(2011, 2031, 10)
+print(myline)
