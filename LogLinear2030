@@ -56,16 +56,5 @@ print (mymodel.coef_,mymodel.intercept_)
 print(r2_score(y,ypred))
 
 
-def myfunc(x):
-    
-    
-    y = -211.43 + 0.10829 * x
-    v = np.exp(y)
-    return v
-helo = []
-for x in range(2011, 2030):
-   
-    val = myfunc(x)
-    helo.append(val)
-print(helo)
+
 
