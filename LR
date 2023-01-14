@@ -1,0 +1,77 @@
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy import stats
+from sklearn.metrics import r2_score
+from sklearn.linear_model import LinearRegression
+from scipy.stats import linregress
+from matplotlib.pyplot import figure
+
+#Profit After Tax Prediction Model Using Linear Regression(based on last decade)
+x = [2011,
+2012,
+2013,
+2014,
+2015,
+2016,
+2017,
+2018,
+2019,
+2020,
+2021,2022,
+2023,
+2024,
+2025,
+2026,
+2027,
+2028,
+2029,2030
+]
+
+y = [630.33, 700.56,726.34,777.63,783.79, 841.81, 1010.18, 1180.15, 1708.42, 1578.58, 1716.60,1764.27, 1881.74, 1999.20, 2116.67, 2234.13, 2351.59, 2469.06, 2586.52, 2703.99]
+y = np.array(y)
+
+mymodel = LinearRegression()
+mymodel.fit(np.array(x).reshape(-1, 1),y)
+ypred = mymodel.predict(np.array(x).reshape(-1,1))
+
+
+
+
+
+f = plt.figure()
+f.set_figwidth(10)
+f.set_figheight(10)
+labels = [2011,
+2012,
+2013,
+2014,
+2015,
+2016,
+2017,
+2018,
+2019,
+2020,
+2021,2022,
+2023,
+2024,
+2025,
+2026,
+2027,
+2028,
+2029,2030
+]
+# naming the title of the plot
+plt.title("Set X-Axis Values in Matplotlib")
+ 
+# setting x-axis values and specifying rotation
+# for the labels in degrees
+plt.xticks(x, labels, rotation=45)
+for i, j in zip(x, y):
+   plt.text(i, j+0.5, '({})'.format(j))
+plt.scatter (x,y)
+plt.plot(x, ypred,'r')
+plt.plot(x, y)
+plt.show()
+print (mymodel.coef_,mymodel.intercept_)
+slope_intercept = np.polyfit(x,y,1)
+print(slope_intercept)
